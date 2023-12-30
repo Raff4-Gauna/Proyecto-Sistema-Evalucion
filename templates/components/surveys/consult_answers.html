@@ -1,0 +1,36 @@
+<!-- consultar_respuestas_docente.html -->
+
+{% extends 'layout.html' %}
+
+{% block content %}
+  <h2>Respuestas de Alumnos</h2>
+
+  {% if encuestas_alumnos %}
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Alumno</th>
+          <th>Materia</th>
+          <th>Respuestas</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for encuesta in encuestas_alumnos %}
+          <tr>
+            <td>{{ encuesta.alumno.username }}</td>
+            <td>{{ encuesta.materia.nombre }}</td>
+            <td>
+              <ul>
+                {% for respuesta in encuesta.respuestas.all %}
+                  <li>{{ respuesta.pregunta.pregunta }}: {{ respuesta.respuesta }}</li>
+                {% endfor %}
+              </ul>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>No hay respuestas disponibles.</p>
+  {% endif %}
+{% endblock %}

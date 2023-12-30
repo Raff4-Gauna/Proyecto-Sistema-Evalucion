@@ -1,0 +1,8 @@
+SECRET_KEY = hola
+DB_ENGINE = backend
+BD_NAME = 'default'
+DB_USER = user
+DB_PASSWORD = pass
+DB_HOST = host
+DB_PORT = 3306
+ALLOWED_HOST1 = www.example.com

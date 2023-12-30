@@ -1,0 +1,68 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+  <h2 class="mb-4">Encuestas del Docente {{ user.username }} </h2>
+
+  <form class="mb-4" method="get" action="">
+    <div class="row">
+      <div class="col-md-4">
+        <label for="materia_id" class="form-label">Filtrar por materia:</label>
+        <select name="materia_id" class="form-select">
+          <option value="" {% if not materia_id %}selected{% endif %}>Todas las materias</option>
+          {% for materia in materias_a_cargo %}
+            <option value="{{ materia.id }}" {% if materia.id == materia_id %}selected{% endif %}>{{ materia.nombre }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="col-md-2 mt-4">
+        <button type="submit" class="btn btn-primary">Filtrar</button>
+      </div>
+    </div>
+  </form>
+
+  {% for encuesta in encuestas %}
+    <div class="card mb-4">
+      <div class="card-header">
+        <h3 class="card-title">Encuesta de ********* materia {{ encuesta.materia }}</h3>
+        <p class="card-subtitle text-muted">Fecha: {{ encuesta.fecha }}</p>
+      </div>
+      <div class="card-body">
+        <table class="table table-success table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Pregunta</th>
+              <th scope="col">Respuesta</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for respuesta_encuesta in preguntas_respuestas.object_list %}
+              {% if respuesta_encuesta.encuesta == encuesta %}
+                <tr>
+                  <td>{{ respuesta_encuesta.pregunta.texto_pregunta }}</td>
+                  <td>{{ respuesta_encuesta.respuesta }}</td>
+                </tr>
+              {% endif %}
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  {% endfor %}
+
+  <!-- Mostrar enlaces de paginación -->
+  <div class="pagination-container">
+    <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-center">
+        {% if preguntas_respuestas.has_previous %}
+          <li class="page-item"><a class="page-link" href="?page=1">&laquo; Anterior</a></li>
+          <li class="page-item"><a class="page-link" href="?page={{ preguntas_respuestas.previous_page_number }}">Anterior</a></li>
+        {% endif %}
+
+        {% if preguntas_respuestas.has_next %}
+          <li class="page-item"><a class="page-link" href="?page={{ preguntas_respuestas.next_page_number }}">Siguiente</a></li>
+          <li class="page-item"><a class="page-link" href="?page={{ preguntas_respuestas.paginator.num_pages }}">Última &raquo;</a></li>
+        {% endif %}
+      </ul>
+    </nav>
+  </div>
+{% endblock %}

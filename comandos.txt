@@ -1,0 +1,34 @@
+-----------------------------------------------------------------------------
+comando para inicializar un nuevo proyecto = 'django-admin startproject core'
+creando app = 'python manage.py startapp blog .'
+creando app = 'python manage.py startapp blog ./apps/blog'
+-----------------------------------------------------------------------------
+
+python manage.py tailwind start
+-------------------------------------------
+-------------------------------------------------------------------
+pip install distutils
+
+pip install --upgrade --force-reinstall Django
+
+-------------------------------------------------------------------
+
+crear las migraciones y aplicarlas después de realizar cambios en el modelo:
+
+python manage.py makemigrations
+python manage.py migrate
+
+--------------------------------------------------------------------
+
+crear superuser:
+python manage.py createsuperuser
+
+
+-------------------------------------------------------------------
+crear requirements.txt:
+python -m pip freeze > requirements.txt
+-------------------------------------------------------------------
+
+python manage.py collectstatic
+-------------------------------------------------------------------
+pip install -r requirements.txt

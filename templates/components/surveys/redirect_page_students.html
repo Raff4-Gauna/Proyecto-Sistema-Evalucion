@@ -1,0 +1,9 @@
+{% extends 'layout.html' %}
+{% block content %}
+  <div class="container">
+    <h2>Acceso Restringido</h2>
+    <p class="text-danger">Lo siento, esta página solo está disponible para estudiantes.</p>
+    <p>Si eres un estudiante, por favor inicia sesión con una cuenta de estudiante.</p>
+    <a href="{% url 'usuarios:login' %}" class="btn btn-primary">Iniciar Sesión</a>
+  </div>
+{% endblock %}
