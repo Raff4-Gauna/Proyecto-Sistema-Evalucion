@@ -8,5 +8,6 @@ docentes correspondientes al cuatrimestre, además de poder obtener informes de 
 ### Para el Desarrollo del Sistema utilize las siguientes Tecnologías:
 
 - Django.
+- Mysql.
 - Postman.
 - Bootstrap.
